@@ -6,6 +6,7 @@ Java port of [wolfgarbe/PruningRadixTrie](https://github.com/wolfgarbe/PruningRa
   
 No features have been added/removed other than where necessary to match Java conventions. So functionality and performance should be unchanged, aside only from these exceptions:  
 - Removed parameter `out long termFrequencyCountPrefix` from method `getTopkTermsForPrefix` because awkward to achieve this in Java without changing the method's return type significantly. Specifically, the functionality lost is- getting the number of terms in the dictionary which begin with the given prefix (not an essential feature). 
+- `readTermsFromFile` now requires that the frequency values in the file have a max value of *2^63 - 1*, whereas before they could have a max value of *2^64 - 1* (due to the frequency values are interpreted as signed `long`s rather than unsigned `long`s). 
 - Introduced parameter `String delimiter` to method `readTermsFromFile` so that text files with delimiters other than *\t* can be read. See Usage below. 
 
 ***
